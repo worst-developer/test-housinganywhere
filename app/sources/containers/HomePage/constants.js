@@ -1,0 +1,1 @@
+export const SELECT = 'HOME_SELECT_INPUTS'
