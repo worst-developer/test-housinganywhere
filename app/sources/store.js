@@ -10,6 +10,7 @@ import { persistState } from 'redux-devtools';
 import createReducer from './reducers';
 import DevTools from './containers/DevTools';
 import { hasReduxDevToolExtension } from './internal/utils';
+import rootSaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -65,7 +66,7 @@ export default function configureStore(initialState, history) {
   );
 
   // Extensions
-  store.runSaga = sagaMiddleware.run;
+  store.runSaga = sagaMiddleware.run(rootSaga);
   store.asyncReducers = {};
 
   // Make reducers hot reloadable

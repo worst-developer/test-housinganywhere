@@ -17,6 +17,7 @@
     "prod:server": "NODE_ENV=\"production\" node server.js"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "babel-polyfill": "^6.23.0",
     "classnames": "^2.2.5",
     "es6-promise": "4.1.1",

@@ -1,5 +1,6 @@
 // import components
 import Toggle from 'material-ui/Toggle';
+import Paper from 'material-ui/Paper';
 
 const toggleB1 = 'toggleB1';
 const toggleB2 = 'toggleB2';
@@ -22,25 +23,30 @@ export default class Toggles extends Component {
       this.setState({
         [toggleB1]: !this.state.toggleB1,
         [toggleB2]: !this.state.toggleB2
-      }) : this.setState({ [id]: !this.state[id] });
-  }
+      }, () => this.props.toggle(this.state)) : this.setState({ [id]: !this.state[id] }, () => this.props.toggle(this.state));
+    }
 
   render() {
     return (
-      <div>
-        <Toggle 
-          label="B1"
-          labelPosition={'right'}
-          toggled={this.state[toggleB1]}
-          onToggle={e => {this.handleToggle(e, toggleB1)}} 
-        />
-        
-        <Toggle 
-          label="B2"
-          labelPosition={'right'}
-          toggled={this.state[toggleB2]}
-          onToggle={e => {this.handleToggle(e, toggleB2)}}
-        />
+      <div className="main">
+        <Paper className="box-selectors" zDepth={2}>
+          <div className="wrapper">
+            <Toggle 
+              className="toggle"
+              label="B1"
+              labelPosition={'right'}
+              toggled={this.state[toggleB1]}
+              onToggle={e => {this.handleToggle(e, toggleB1)}} 
+            />
+            <Toggle 
+              className="toggle"
+              label="B2"
+              labelPosition={'right'}
+              toggled={this.state[toggleB2]}
+              onToggle={e => {this.handleToggle(e, toggleB2)}}
+            />
+          </div>
+        </Paper>
       </div>
     )
   }

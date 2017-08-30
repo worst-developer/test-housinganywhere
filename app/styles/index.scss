@@ -1,0 +1,35 @@
+
+.main {
+  display: flex;
+  justify-content: center;
+  margin-top: 300px;
+}
+
+.box-selectors {
+  display: flex;  
+  justify-content: flex-start;
+  height: 400px;
+  width: 400px;
+}
+
+.box-selectors-center {
+  justify-content: center;
+}
+
+.wrapper {
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;
+}
+
+.checkbox {
+ padding: 20px 0 0 50px;
+}
+
+.toggle {
+  padding: 20px 0 0 50px;
+}
+
+.check-button {
+  margin-top: 20px; 
+}

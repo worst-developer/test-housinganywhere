@@ -5,14 +5,16 @@
 import { combineReducers } from 'redux';
 import { routerReducer }   from 'react-router-redux';
 import appReducer          from './containers/App/reducer';
-import homeReducer         from './containers/HomePage/reducer'
+import checkReducer        from './containers/HomePage/reducer';
+import { submitReducer }   from './containers/HomePage/reducer';
 /**
  * Creates the global reducer with the asynchronously loaded ones
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
     app:      appReducer,
-    home:     homeReducer,
+    check:    checkReducer,
+    submit:   submitReducer,
     router:   routerReducer,
     ...asyncReducers,
   });

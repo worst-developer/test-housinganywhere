@@ -1,10 +1,5 @@
 'use strict'
 
-// TODO
-// + Add CSS modules
-// + Add Dll plugin
-// + Add and config eslint
-
 const path              = require('path');
 const chalk             = require('chalk');
 const argv              = require('yargs').argv;
@@ -87,7 +82,7 @@ const plugins = [
     '__EXPERIMENTAL__': JSON.stringify(__EXPERIMENTAL__),
   }),
   new HtmlWebpackPlugin({
-    title:    'RVnGO',
+    title:    'simple forms',
     template: Path.to.template,
     path:     Path.to.build,
     filename: 'index.html',

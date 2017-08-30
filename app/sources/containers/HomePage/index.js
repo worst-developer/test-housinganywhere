@@ -1,29 +1,36 @@
 import { push } from "react-router-redux";
 import { SELECT } from './constants';
-import selectAction from './actions';
-
-import Checkbox from 'material-ui/Checkbox';
+import { submit } from './actions';
 
 import Toggles from '../../components/Steps/Toggles';
 import Checkboxes from '../../components/Steps/Checkboxes';
-import Toggle from 'material-ui/Toggle';
+import Input from '../../components/Steps/Input';
+import Select from '../../components/Steps/Select';
 
+import RaisedButton from 'material-ui/RaisedButton';
 
-@connect()
+const mapStateToProps = (state) => state.check
+
+@connect(mapStateToProps)
 export default class HomePage extends Component {
 
   state = {
     page: 0
   }
 
-  handleSelector = (Id, value) => value === true ? 
+  handleSelector = (Id, value) => value === true  ? 
     this.setState({ page: this.state.page + 1, [Id]: value }) : ({}) 
 
-  redirect = () => {
-    this.props.dispatch(selectAction(this.state));
-    this.props.dispatch(push('/blank'), { selectYear: this.state.selectYear, selectCoach: this.state.selectCoach });
+  handleSend = () => {
+    const data = {
+      a: new Array(this.state.checkedA1 === true ? 'A1' : 'A2'),     
+      b: this.state.selectors.toggleB1 === true ? 'B1' : 'B2',
+      text: this.state.input,
+      c: this.state.select
+    }
+    this.props.dispatch(submit(data));
   }
-
+  // timeouts added only for better UX
   nextStep = () => {
     switch(this.state.page) {
       case 0:
@@ -34,21 +41,37 @@ export default class HomePage extends Component {
         />
       case 1: 
         return <Toggles 
-          toggle={(toggleId, value) => {
-            this.handleSelector(toggleId, value);
+          toggle={(selectors) => {
+            this.setState({ selectors });
+            setTimeout(() => {
+              this.setState({ page: 2}); 
+            }, 1500);
           }}
         />
+      case 2: 
+        return <Input 
+          handleInput={(value) => {this.setState({ input: value })}}
+          handleNextStep={() => {setTimeout(() => {
+            this.setState({ page: 3})
+          }, 1500)}}
+        />
+      case 3: 
+        return <Select 
+          handlePost={() => this.handleSend()}
+          handleSelect={(selector, value) => this.setState({ 
+            [selector]: value
+          })}
+        />
       default: 
-        console.log('page is not provided')
+        console.warn('page is not provided')
         break;
     }
   }
 
   render() {
-    console.log(this.state)
     return (
       <div>
-       {this.nextStep()}
+        {this.nextStep()}
       </div>
     );
   }

@@ -8,7 +8,6 @@ router
 .post('/check', async (ctx: Koa.Context, next: Function) => {
   try {
     const value = ctx.request.body.value
-    
     if (value && value[0] === '@') {
       return ctx.status = 200
     } else {
@@ -17,13 +16,14 @@ router
   } catch (error) {
     Logger.loggerError(error)
     ctx.status = 400
-    ctx.body = error.message
+    ctx.body = { error: error.message }
     return 
   }
 })
 
 .post('/submit', async (ctx: Koa.Context, next: Function) => {
   try {
+    Logger.loggerInfo( ctx.request.body)
     if (Math.random() < 0.5) {
       return ctx.status = 201
     } else {
@@ -33,7 +33,7 @@ router
     Logger.loggerError(error)
     // easteregg🙃
     ctx.status = 418
-    ctx.body = error.message
+    ctx.body = { error: error.message }
   }
 })
 
