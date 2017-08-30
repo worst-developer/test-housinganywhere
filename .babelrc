@@ -3,7 +3,7 @@
     "react-hot-loader/babel",
     "transform-class-properties",
     "syntax-decorators",
-    "transform-decorators-legacy",
+    "transform-decorators-legacy"
   ],
   "presets": [[
     "env", {
@@ -12,6 +12,7 @@
         "browsers": ["last 4 versions", "safari >= 8", "ie >= 10"]
       }
     }],
+    "es2015",
     "react",
     "stage-0"
   ],
@@ -42,6 +43,7 @@
           }
         }],
         "react",
+        "es2015",
         "stage-0"
       ],
       "plugins": [

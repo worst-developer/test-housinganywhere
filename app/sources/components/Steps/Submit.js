@@ -6,6 +6,10 @@ import actionCheck from '../../containers/HomePage/actions'
 
 export default class Input extends Component {
 
+  static propTypes = {
+    checkData:   PropTypes.string.isRequired
+  }
+
   constructor(props) {
     super(props);
   }

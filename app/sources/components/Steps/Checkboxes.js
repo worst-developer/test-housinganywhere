@@ -1,10 +1,10 @@
 // import components
-
+import React, { Component } from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import Paper from 'material-ui/Paper';
 
-const check1 = 'checkedA1';
-const check2 = 'checkedA2';
+export const check1 = 'checkedA1';
+export const check2 = 'checkedA2';
 
 export default class Checkboxes extends Component {
   
@@ -13,7 +13,7 @@ export default class Checkboxes extends Component {
     [check2]: false
   }
 
-  onCheck = (event, value) => { 
+  onCheck = (event, value) => {
     event.preventDefault(event);
     this.state[value] === false ? 
     this.setState({ [value]: true }, () => this.props.checkbox(value, this.state[value])) :
@@ -26,12 +26,14 @@ export default class Checkboxes extends Component {
         <Paper className="box-selectors" zDepth={2}> 
           <div className="wrapper">
             <Checkbox
+              id="A1"
               className="checkbox"
               label="A1"
               checked={this.state[check1]}
               onCheck={e => {this.onCheck(e, check1)}}
             />
             <Checkbox
+              id="A2"
               className="checkbox"
               label="A2"
               checked={this.state[check2]}
